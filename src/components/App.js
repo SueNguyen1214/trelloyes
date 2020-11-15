@@ -6,8 +6,12 @@ class App extends React.Component {
   state = {
     store: STORE,
   };
+  function omit(obj, keyToOmit) {
+    let {[keyToOmit]: _, ...rest} = obj;
+    return rest;
+  }
   handleDeleteCard = (card) => {
-    const newStore = this.state.store.allCards.omit((crd) => crd === card);
+    const newStore = omit(this.state.store, card)
     this.setState({
       store: newStore,
     });
